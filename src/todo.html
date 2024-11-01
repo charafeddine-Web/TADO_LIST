@@ -66,7 +66,7 @@
     <article id="test" class="flex flex-col justify-around   md:flex-row mt-40  gap-5 md:ml-0 md:space-y-0">
         <aside class="bg-background  font-bold w-auto h-full  md:w-80 rounded-xl text-center shadow-2xl p-5 ">
             <!-- <p class="font-bold text-2xl md:text-3xl py-5 text-accent"><strong>Task<mark class="bg-primary">Flow</mark></strong></p> -->
-            <div class="bg-green-500 rounded-xl p-10 space-y-4 flex flex-col items-center">
+             <div class="bg-green-500 rounded-xl p-10 space-y-4 flex flex-col items-center">
                 <button  id="add" class="w-40 rounded-sm hover:bg-green-200 border-2 rounded-md p-2" onclick="openForm()">New Task</button>
                 
                 <div id="overlay" class="overlay hidden ">
@@ -96,7 +96,7 @@
                             </select><br><br>
                           
                             <label for="desc">Description</label>
-                            <textarea name="desc" id="desc" class="w-full h-20 rounded p-3 text-black"></textarea><br><br>
+                            <textarea name="desc" id="desc" class="w-full h-20 rounded p-3 text-black" placeholder=""></textarea><br><br>
             
                             <div class="flex justify-between">
                                 <button id="close" class="rounded-xl hover:bg-red-500  bg-red-500 border-2 p-3" >Close</button>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <button  id="tasks" class="w-40 rounded-sm hover:bg-green-200 border-2 rounded-md p-2">All Tasks</button>
+                <a href="./Priority.html"  id="tasks" class="w-40 rounded-sm hover:bg-green-200 border-2 rounded-md p-2">All Tasks</a>
                 <select  id="Pri" class="w-40 rounded-sm hover:bg-green-200 bg-green-500 border-2 rounded-md p-2">
                     <option value="Priority">Priority</option>
                     <option value="P1">P1</option>
@@ -114,16 +114,20 @@
                     <option value="P3">P3</option>
                 </select>
                
-            </div>
-            <button class="font-bold w-40 py-2 px-4 mt-4 rounded-md hover:text-white "
-            style="background-color: #2D3748; color: white;"
-            onmouseover="this.style.backgroundColor='red'; this.style.color='white'"
-            onmouseout="this.style.backgroundColor='#2D3748'; this.style.color='white'">
-            Log out
-        </button>
+            </div> 
+            <button class="mt-4">
+                <a href="./index.html" class="font-bold w-40 py-2 px-4 mt-2  rounded-md hover:text-white "
+                style="background-color: #2D3748; color: white;"
+                onmouseover="this.style.backgroundColor='red'; this.style.color='white'"
+                onmouseout="this.style.backgroundColor='#2D3748'; this.style.color='white'">
+                Log out
+                </a>
+            </button>
+            
+           
         </aside>
 
-
+   
 
 
         <aside class="">
