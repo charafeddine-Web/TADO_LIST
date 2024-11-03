@@ -13,20 +13,25 @@ function openForm() {
 /*************************************************add NewTask********************************* */
 function NewTask() {
 
-  let titer = document.getElementById("titel").value.trim();
+  let titer = document.getElementById("titel").value.toLowerCase().trim();
   let Priority = document.getElementById("priority").value;
   let status = document.getElementById("status").value;
-  let date = document.getElementById("deadline").value.trim();
-  let description = document.getElementById("desc").value.trim();
+  let date = document.getElementById("deadline").value.toLowerCase().trim();
+  let description = document.getElementById("desc").value.toLowerCase().trim();
 
   
 if(!titer ||  !Priority || !status || !date || !description){
   alert("Please fill all fields");
   return;
 }
-if(date  < new Date().toISOString().split("T")[0]){
-  alert("Please enter a valid date");
-  return;
+if (titer.length > 20) {
+  alert("Title should not be more than 20 characters");
+  return; 
+}
+const today = new Date().toISOString().split("T")[0];
+if (date < today) {
+    alert("Please enter a valid date.");
+    
 }
 
 let newTask = {
@@ -61,8 +66,8 @@ let newTask = {
         }
       }
   document.getElementById("titel").value = "";
-  document.getElementById("priority").value = "";
-  document.getElementById("status").value = "";
+  // document.getElementById("priority").value = "";
+  // document.getElementById("status").value = "";
   document.getElementById("deadline").value = "";
   document.getElementById("desc").value = "";
 }
@@ -94,19 +99,18 @@ function displayTasks() {
 
     item.setAttribute("draggable", "true");
 
-    item.className = `border-2 w-80 items-start p-4 rounded-xl bg-gray-300 hover:opacity-70  `;
+    item.className = `border-2 w-80 items-start p-4 rounded-xl bg-gray-300 hover:opacity-70    `;
     item.innerHTML = `
             <div class="flex justify-between pb-2">
                 <h1 class="text-xl font-bold">${task.titer}</h1>
-                <p class="font-bold p-1 rounded-xl ${bgColorClass}">${task.Priority}</p>
+                <p class="font-bold p-1 rounded-xl h-8 ${bgColorClass}">${task.Priority}</p>
             </div><hr>
             <h3 class="text-gray-500 mb-2">${task.Date}</h3>
             <div class="flex justify-end gap-3">
                 <img src="../Assets/edit.png" alt="icon edit" width="20px" onclick="edit_task(${task.id})" class="cursor-pointer hover:opacity-50 ">
-                <img src="../Assets/delete.png" alt="icon delete" width="20px" onclick="delete_task(${task.id})" class="cursor-pointer hover:opacity-50 ">
+                <img src="../Assets/delete.png" alt="icon delete" width="20px" onclick="delete_task(${task.id})"class="cursor-pointer hover:opacity-50 ">
             </div>
             `;
-
     switch (task.Status) {
       case "ToDo":
         parent_todo.appendChild(item);
@@ -214,11 +218,28 @@ function edit_task(taskId) {
   `; 
 
   document.getElementById("edit_task").onclick = function () {
-    task.titer = document.getElementById("titel1").value;
-    task.Priority = document.getElementById("priority1").value;
-    task.Status = document.getElementById("status1").value;
-    task.Date = document.getElementById("deadline1").value;
-    task.Description = document.getElementById("desc1").value;
+    let title = document.getElementById("titel1").value.toLowerCase().trim();
+    let priority = document.getElementById("priority1").value;
+    let status = document.getElementById("status1").value;
+    let date = document.getElementById("deadline1").value.toLowerCase().trim();
+    let description = document.getElementById("desc1").value.toLowerCase().trim();
+
+    if (!title || !priority || !status || !date || !description) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    const today = new Date().toISOString().split("T")[0];
+    if (date < today) {
+        alert("Please enter a valid date.");
+        return;
+    }
+
+    task.titer = title;
+    task.Priority = priority;
+    task.Status = status;
+    task.Date = date;
+    task.Description = description;
 
     tasks[taskIndex] = task;
     localStorage.setItem("tasks", JSON.stringify(tasks));
