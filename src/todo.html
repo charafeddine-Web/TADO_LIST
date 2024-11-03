@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-          .bg-primary { background-color: #33ffc2; }
+    .bg-primary { background-color: #33ffc2; }
     .bg-background { background-color: #0D2F2B; }
     .bg-sceend{background-color:#33FF66 ;}
     .bg-thre{background-color:  #ff7231;}
@@ -27,6 +27,7 @@
             align-items: center;
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 10; 
+            animation: fadeIn 1s ease forwards;
         }
         .hidden{
             display: none;
@@ -40,6 +41,15 @@
             -ms-overflow-style: none; 
             scrollbar-width: none;
         }
+      
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
   
 </head>
@@ -47,10 +57,9 @@
 <body  class="">
     <header class="fixed z-10 top-0 left-0 right-0 flex flex-col md:flex-row justify-between items-center bg-background rounded-b-2xl shadow-2xl px-5 md:px-10 py-3 gap-5 md:gap-20">
         <div class="flex items-center">
-        <!-- <a href="./todo.html" class="flex-shrink-0"><img src="../Assets/logoo.png" alt="logo" class="w-16 md:w-20"></a> -->
         <h1 class="font-bold text-2xl md:text-3xl py-5 text-accent"><strong>Task <mark class="bg-primary rounded-r-full p-1 pb-2">Flow</mark></strong></h1>
         </div>
-        <form action="" method="get" class="flex items-center w-full md:w-auto space-x-2">
+        <form  method="get" class="flex items-center w-full md:w-auto space-x-2">
             <input type="text" class="rounded-xl h-10 bg-gray-200 w-full md:w-auto px-4" placeholder="Search">
             <button type="submit" class="bg-green-300 rounded-xl w-20 h-10 font-bold">Search</button>
         </form>
@@ -58,7 +67,8 @@
 
     <article class="flex flex-col justify-around   md:flex-row mt-40  gap-5 md:ml-0 md:space-y-0">
         <aside class="bg-background  font-bold w-auto h-full  md:w-80 rounded-xl text-center shadow-2xl p-5 ">
-            <!-- <p class="font-bold text-2xl md:text-3xl py-5 text-accent"><strong>Task<mark class="bg-primary">Flow</mark></strong></p> -->
+
+
              <div class="bg-green-500 rounded-xl p-10 space-y-4 flex flex-col items-center">
                 <button  id="add" class="w-40 rounded-sm hover:bg-green-200 border-2 rounded-md p-2" onclick="openForm()">New Task</button>
                 
@@ -70,7 +80,7 @@
                             <p class="text-red-500" id="erreur_titer"></p>
                             <br><br>
                             <label for="deadline" class="pr-2">Date</label>
-                            <input type="date" name="deadline" id="deadline" class="rounded p-3 text-black w-full" ><br><br>
+                            <input type="date" name="deadline" id="deadline" class="rounded p-3 text-black w-full" required><br><br>
                            
                             <label for="status" class="pr-2">Status</label><br>
                             <select id="status" name="status" class="rounded text-black p-3 w-full">
@@ -81,7 +91,7 @@
                             </select><br><br>
 
                             <label for="priority" class="pr-2">Priority</label>
-                            <select id="priority" name="priority" class="rounded text-black p-3 w-full" required >
+                            <select id="priority" name="priority" class="rounded text-black p-3 w-full"  >
                                 <option disabled>Priority</option>
                                 <option value="P1" class="font-bold text-red-700" selected>P1</option>
                                 <option value="P2" class="font-bold text-red-400">P2</option>
@@ -89,10 +99,10 @@
                             </select><br><br>
                           
                             <label for="desc">Description</label>
-                            <textarea name="desc" id="desc" class="w-full h-20 rounded p-3 text-black" placeholder=""></textarea><br><br>
+                            <textarea name="desc" id="desc" class="w-full h-20 rounded p-3 text-black" placeholder="" required></textarea><br><br>
             
                             <div class="flex justify-between">
-                                <button id="close" class="rounded-xl hover:bg-red-500  bg-red-500 border-2 p-3" >Close</button>
+                                <button id="close" class="rounded-xl hover:bg-gray-500  bg-gray-300 border-2 p-3" >Close</button>
                                 <button id="newtask" class="rounded-xl hover:bg-green-500  bg-green-400 font-bold  p-3" onclick="NewTask()" type="submit">Add Task</button>
                             </div>
                         </form>
@@ -106,29 +116,17 @@
                     <option value="P2">P2</option>
                     <option value="P3">P3</option>
                 </select>
-               
+                <a href="./index.html"><img src="../Assets/left.png" alt="back" width="40" style="background: black;"  class=" rounded-full p-1"></a>
+
             </div> 
-            <button class="mt-4">
-                <a href="./index.html" class="font-bold w-40 py-2 px-4 mt-2  rounded-md hover:text-white "
-                style="background-color: #2D3748; color: white;"
-                onmouseover="this.style.backgroundColor='red'; this.style.color='white'"
-                onmouseout="this.style.backgroundColor='#2D3748'; this.style.color='white'">
-                Log out
-                </a>
-            </button>
-            
-           
+
         </aside>
-
-   
-
-
         <aside class="">
             <section class=" w-full  flex flex-col gap-10 flex-col items-center justify-between md:flex-row">
 
                 <div class="bg-gray-200 w-85   rounded-2xl shadow-2xl flex flex-col  items-center justify-start gap-5 pb-10 p-2">
                    <div class="flex flex-row items-center justify-around p-5  bg-white rounded-2xl w-80">
-                        <img src="../Assets/todoo.gif" alt="tasks" width="30px"
+                        <img src="../Assets/todoo.gif" alt="tasks" width="30"
                         style="filter: drop-shadow(0px 2px 10px rgb(255, 255, 255));border-radius:5px;">
                         <h2 class="font-bold text-xl ">TO DO</h2>
                         <h3 class="font-bold text-center text-2xl" id="stat-todo"></h3>
@@ -139,7 +137,7 @@
                 </div>
                 <div class="bg-gray-200 w-85   rounded-2xl shadow-2xl flex flex-col  items-center justify-start gap-5 pb-10 p-2">
                     <div class="flex flex-row items-center justify-around p-5  bg-white rounded-2xl w-80">
-                         <img src="../Assets/i-do.gif" alt="tasks" width="30px"
+                         <img src="../Assets/i-do.gif" alt="tasks" width="30"
                          style="filter: drop-shadow(0px 2px 10px rgb(255, 255, 255));border-radius:5px;">
                          <h2 class="font-bold text-xl ">DOING</h2>
                          <h3 class="font-bold text-center text-2xl " id="stat-doing"></h3>
@@ -152,7 +150,7 @@
 
                 <div class="bg-gray-200 w-85   rounded-2xl shadow-2xl flex flex-col  items-center justify-start gap-5 pb-10 p-2">
                     <div class="flex flex-row items-center justify-around p-5  bg-white rounded-2xl w-80">
-                         <img src="../Assets/done.gif" alt="tasks" width="30px"
+                         <img src="../Assets/done.gif" alt="tasks" width="30"
                          style="filter: drop-shadow(0px 2px 10px rgb(255, 255, 255));border-radius:5px;">
                          <h2 class="font-bold text-xl ">DONE</h2>
                          <h3 class="font-bold text-center text-2xl  " id="stat-done"></h3>
@@ -161,8 +159,6 @@
                      </section>
                     
                 </div>
-        
-
             </section>
         </aside>
     </article>
